@@ -1,4 +1,4 @@
-import { useState, useEffect, ChangeEvent, MouseEvent } from 'react'
+import { useState, useEffect, MouseEvent } from 'react'
 import style from './style.module.css'
 
 interface ITask{
