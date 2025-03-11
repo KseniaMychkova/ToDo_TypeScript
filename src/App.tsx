@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, ChangeEvent, MouseEvent } from 'react'
 import style from './style.module.css'
 
 interface ITask{
@@ -29,12 +29,13 @@ function App() {
     setFlag(!flag)
   };
 
-  function showFilterList(e: any) {
-    if (e.target.id === 'all') {
+  function showFilterList(e: MouseEvent<HTMLDivElement>) {
+    const target = e.target as HTMLButtonElement;
+    if (target.id === 'all') {
       setFilteredTasks(tasks);
-    } else if (e.target.id === 'act') {
+    } else if (target.id === 'act') {
       setFilteredTasks(tasks.filter(el => !el.completed));
-    } else if (e.target.id === 'compl') {
+    } else if (target.id === 'compl') {
       setFilteredTasks(tasks.filter(el => el.completed));
     }
   };
@@ -43,7 +44,7 @@ function App() {
     setTasks(tasks.filter((el:ITask) => el.completed === false))
   };
 
-  function toggleCompletion(id: any) {
+  function toggleCompletion(id: number) {
     setTasks(tasks.map((el:ITask) =>
       el.id === id ? { ...el, completed: !el.completed } : el
     ));
