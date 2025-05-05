@@ -94,3 +94,39 @@
         width: 100px;
     }
 }
+
+.inputField {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #676266;
+    font-weight: bold;
+
+}
+
+.inputField input {
+    padding-left: 30px;
+    width: 85%;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 1px solid #646264;
+    border-radius: 2px;
+    color: #676266;
+    font-weight: bold;
+    background-color: #fff;
+}
+
+.inputField button {
+    font-size: 12px;
+    font-family: 'Times New Roman';
+    border: 1px solid #646264;
+    border-radius: 2px;
+    color: #676266;
+    padding: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+}

@@ -1,7 +1,7 @@
 import { useState, useEffect, MouseEvent } from 'react'
 import style from './style.module.css'
 
-interface ITask{
+interface ITask {
   id: number;
   task: string;
   completed: boolean;
@@ -16,9 +16,10 @@ function App() {
   const [flag, setFlag] = useState<boolean>(false);
   const [countActiveTasks, setCountActiveTasks] = useState<number>(0);
   const [filteredTasks, setFilteredTasks] = useState<ITask[]>(tasks);
+  const [inputValue, setInputValue] = useState('')
 
   useEffect(() => {
-    setCountActiveTasks(tasks.filter((el:ITask) => !el.completed).length);
+    setCountActiveTasks(tasks.filter((el: ITask) => !el.completed).length);
   }, [tasks]);
 
   useEffect(() => {
@@ -41,14 +42,25 @@ function App() {
   };
 
   function clearCompletedTasks() {
-    setTasks(tasks.filter((el:ITask) => el.completed === false))
+    setTasks(tasks.filter((el: ITask) => el.completed === false))
   };
 
   function toggleCompletion(id: number) {
-    setTasks(tasks.map((el:ITask) =>
+    setTasks(tasks.map((el: ITask) =>
       el.id === id ? { ...el, completed: !el.completed } : el
     ));
   };
+  function addTastToList() {
+    if (inputValue.trim() === '') return;
+    const newTask: ITask = {
+      id: tasks.length ? tasks[tasks.length - 1].id + 1 : 1,
+      task: inputValue,
+      completed: false,
+    };
+
+    setTasks([...tasks, newTask]);
+    setInputValue('');
+  }
 
   return (
     <>
@@ -75,6 +87,10 @@ function App() {
             <button className={style.completed} id='compl'>Выполненные</button>
           </div>
           <button className={style.clearCompleted} onClick={clearCompletedTasks}>Очистить выполненные</button>
+        </div>
+        <div className={style.inputField}>
+          <input placeholder='Введите задачу' value={inputValue} onChange={(e) => setInputValue(e.target.value)}></input>
+          <button onClick={addTastToList}>Добавить</button>
         </div>
       </section>
     </>
